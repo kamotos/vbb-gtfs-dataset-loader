@@ -1,0 +1,4 @@
+crate==0.25.0
+tablib~=2.0.0
+SQLAlchemy~=1.2
+geojson==2.50

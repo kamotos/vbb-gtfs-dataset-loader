@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  db:
+    image: crate:4.2.4
+    # TODO remove
+    network_mode: host
