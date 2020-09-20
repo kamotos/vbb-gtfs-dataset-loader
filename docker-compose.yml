@@ -3,5 +3,13 @@ version: '3'
 services:
   db:
     image: crate:4.2.4
-    # TODO remove
-    network_mode: host
+    ports:
+      - 4200:4200
+  app:
+    build: .
+    volumes:
+      - ./vbb_loader:/app
+    depends_on:
+      - db
+    links:
+      - db

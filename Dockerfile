@@ -1,8 +1,16 @@
 FROM python:3.8.3
+ENV ROOT_GTFS_PATH /data/
 
-COPY gtfs /data
+WORKDIR /app
+# Downloading the dataset
+RUN mkdir /data \
+    && curl -o /data/gtfs.zip https://www.vbb.de/media/download/2029 \
+    && unzip /data/gtfs.zip -d /data \
+    && rm /data/gtfs.zip
+
+# Installing requirements
 COPY requirements.txt /app
-RUN pip install requirements.txt
+RUN pip install -r /app/requirements.txt
 
 COPY vbb_loader /app
-RUN ["python", "/app/main.py"]
+CMD ["python", "/app/main.py"]
